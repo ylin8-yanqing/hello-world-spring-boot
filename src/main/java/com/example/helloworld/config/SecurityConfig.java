@@ -49,7 +49,7 @@ public class SecurityConfig {
                 .contentSecurityPolicy(csp -> csp
                     .policyDirectives(
                         "default-src 'none'; " +
-                        "img-src 'self' https://www.cfs.com.au; " +
+                        "img-src 'self' https://www.cfs.com.au https://wac-cdn.atlassian.com; " +
                         "style-src 'self' 'unsafe-inline'; " +
                         "frame-ancestors 'none'"))
             )

@@ -27,9 +27,23 @@
             width: 90%;
         }
 
-        .logo {
-            width: 180px;
+        .logo-bar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
             margin-bottom: 32px;
+        }
+
+        .logo-divider {
+            width: 1px;
+            height: 40px;
+            background: #e5e7eb;
+        }
+
+        .logo {
+            height: 40px;
+            width: auto;
         }
 
         .divider {
@@ -97,9 +111,15 @@
 </head>
 <body>
     <div class="card">
-        <img class="logo"
-             src="https://www.cfs.com.au/content/dam/cfs-winged/images/CFS-logo.svg"
-             alt="CFS Logo"/>
+        <div class="logo-bar">
+            <img class="logo"
+                 src="https://www.cfs.com.au/content/dam/cfs-winged/images/CFS-logo.svg"
+                 alt="Colonial First State Logo"/>
+            <div class="logo-divider"></div>
+            <img class="logo"
+                 src="https://wac-cdn.atlassian.com/misc-assets/adg4-nav/AtlassianHeaderLogo.svg"
+                 alt="Atlassian Logo"/>
+        </div>
         <div class="divider"></div>
         <h1>Application Health</h1>
         <div class="status-badge">
