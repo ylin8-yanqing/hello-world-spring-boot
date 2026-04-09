@@ -31,19 +31,28 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 24px;
             margin-bottom: 32px;
+        }
+
+        .logo-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 16px;
         }
 
         .logo-divider {
             width: 1px;
             height: 40px;
             background: #e5e7eb;
+            flex-shrink: 0;
         }
 
         .logo {
             height: 40px;
             width: auto;
+            max-width: 100%;
         }
 
         .divider {
@@ -103,13 +112,17 @@
 <body>
     <div class="card">
         <div class="logo-bar">
-            <img class="logo"
-                 src="https://www.cfs.com.au/content/dam/cfs-winged/images/CFS-logo.svg"
-                 alt="Colonial First State Logo"/>
+            <div class="logo-wrapper">
+                <img class="logo"
+                     src="https://www.cfs.com.au/content/dam/cfs-winged/images/CFS-logo.svg"
+                     alt="Colonial First State Logo"/>
+            </div>
             <div class="logo-divider"></div>
-            <img class="logo"
-                 src="https://wac-cdn.atlassian.com/misc-assets/adg4-nav/AtlassianHeaderLogo.svg"
-                 alt="Atlassian Logo"/>
+            <div class="logo-wrapper">
+                <img class="logo"
+                     src="https://wac-cdn.atlassian.com/misc-assets/adg4-nav/AtlassianHeaderLogo.svg"
+                     alt="Atlassian Logo"/>
+            </div>
         </div>
         <div class="divider"></div>
         <h1 th:text="${message}">Hello World</h1>
