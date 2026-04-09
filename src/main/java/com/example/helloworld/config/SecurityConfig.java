@@ -43,9 +43,15 @@ public class SecurityConfig {
                 // Referrer policy
                 .referrerPolicy(rp -> rp
                     .policy(ReferrerPolicyHeaderWriter.ReferrerPolicy.NO_REFERRER))
-                // Content Security Policy – restrict sources (demo-grade)
+                // Content Security Policy – restrict sources
+                // img-src allows CFS logo from cfs.com.au
+                // style-src 'unsafe-inline' allows inline <style> blocks in HTML templates
                 .contentSecurityPolicy(csp -> csp
-                    .policyDirectives("default-src 'none'; frame-ancestors 'none'"))
+                    .policyDirectives(
+                        "default-src 'none'; " +
+                        "img-src 'self' https://www.cfs.com.au; " +
+                        "style-src 'self' 'unsafe-inline'; " +
+                        "frame-ancestors 'none'"))
             )
 
             // YSJP-214: Permit /hello; deny everything else by default
