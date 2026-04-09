@@ -37,4 +37,10 @@ public class PageController {
         model.addAttribute("status", "UP");
         return "health";
     }
+
+    @GetMapping("/hello-page-boq")
+    public String helloPageBoq(Model model) {
+        model.addAttribute("message", helloService.getHello().message());
+        return "hello-boq";
+    }
 }

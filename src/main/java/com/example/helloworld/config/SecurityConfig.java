@@ -49,14 +49,14 @@ public class SecurityConfig {
                 .contentSecurityPolicy(csp -> csp
                     .policyDirectives(
                         "default-src 'none'; " +
-                        "img-src 'self' https://www.cfs.com.au https://wac-cdn.atlassian.com; " +
+                        "img-src 'self' https://www.cfs.com.au https://wac-cdn.atlassian.com https://www.boq.com.au; " +
                         "style-src 'self' 'unsafe-inline'; " +
                         "frame-ancestors 'none'"))
             )
 
             // YSJP-214: Permit /hello; deny everything else by default
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/hello", "/health", "/", "/hello-page", "/health-page").permitAll()
+                .requestMatchers("/hello", "/health", "/", "/hello-page", "/health-page", "/hello-page-boq").permitAll()
                 .anyRequest().denyAll()
             );
 
