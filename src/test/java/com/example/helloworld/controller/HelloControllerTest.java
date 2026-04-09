@@ -1,5 +1,6 @@
 package com.example.helloworld.controller;
 
+import com.example.helloworld.config.SecurityConfig;
 import com.example.helloworld.model.HelloResponse;
 import com.example.helloworld.service.HelloService;
 import org.junit.jupiter.api.DisplayName;
@@ -7,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -21,8 +23,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * <p>YSJP-222: Tests are deterministic and do not require external services.
  *
  * <p>Uses Spring MVC slice (@WebMvcTest) to test the controller in isolation.
+ * SecurityConfig is imported so that permitAll() on /hello is applied correctly.
  */
 @WebMvcTest(HelloController.class)
+@Import(SecurityConfig.class)
 class HelloControllerTest {
 
     @Autowired
