@@ -1,0 +1,24 @@
+# Maven build output
+target/
+*.class
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# YSJP-220: No secrets committed – ensure env/config files with secrets are ignored
+*.env
+.env
+application-local.properties
+application-secret.properties
+secrets/
+
+# Spring Boot devtools restart trigger
+.reloadtrigger

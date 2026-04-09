@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Structured logging configuration.
+  YSJP-214 / YSJP-218 / HLSA §6:
+    - Structured log pattern for auditability
+    - No sensitive data in log output
+    - INFO level for production safety
+-->
+<configuration>
+
+    <springProperty scope="context" name="appName" source="spring.application.name" defaultValue="hello-world-spring-boot"/>
+
+    <!-- Console appender: structured pattern -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd'T'HH:mm:ss.SSSZ} [%thread] %-5level %logger{36} app=${appName} - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!-- Root logger: INFO – avoids verbose debug output that may expose internals -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+
+    <!-- Application logger -->
+    <logger name="com.example.helloworld" level="INFO" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+
+    <!-- Suppress overly verbose Spring framework debug output -->
+    <logger name="org.springframework" level="WARN"/>
+    <logger name="org.springframework.web.filter.CommonsRequestLoggingFilter" level="INFO"/>
+
+</configuration>

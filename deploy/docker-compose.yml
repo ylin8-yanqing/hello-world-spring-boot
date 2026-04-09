@@ -1,0 +1,37 @@
+# Docker Compose – Demo deployment (YSJP-219)
+# Usage:
+#   docker compose -f deploy/docker-compose.yml up --build
+#
+# YSJP-219: Simple, reproducible demo deployment mechanism
+# YSJP-214 / HLSA §6: No secrets in compose file – use .env file (gitignored)
+
+version: "3.9"
+
+services:
+  hello-app:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    image: hello-world-spring-boot:demo
+    container_name: hello-world-app
+    ports:
+      - "8080:8080"
+    environment:
+      # YSJP-214: Secrets via environment variables, never hardcoded
+      # Add any runtime config here or via a .env file (gitignored)
+      SPRING_PROFILES_ACTIVE: "default"
+      SERVER_PORT: "8080"
+    # YSJP-214: Read-only filesystem + no new privileges
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+    # Minimal tmpfs for Spring Boot tmp files
+    tmpfs:
+      - /tmp
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8080/hello"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
