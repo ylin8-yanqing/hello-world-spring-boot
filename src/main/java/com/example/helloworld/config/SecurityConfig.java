@@ -50,7 +50,7 @@ public class SecurityConfig {
 
             // YSJP-214: Permit /hello; deny everything else by default
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/hello").permitAll()
+                .requestMatchers("/hello", "/health").permitAll()
                 .anyRequest().denyAll()
             );
 
