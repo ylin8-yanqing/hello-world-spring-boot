@@ -1,5 +1,6 @@
 package com.example.helloworld.controller;
 
+import com.example.helloworld.model.HealthResponse;
 import com.example.helloworld.model.HelloResponse;
 import com.example.helloworld.service.HelloService;
 import org.springframework.http.MediaType;
@@ -41,5 +42,15 @@ public class HelloController {
     @GetMapping(value = "/hello", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<HelloResponse> hello() {
         return ResponseEntity.ok(helloService.getHello());
+    }
+
+    /**
+     * Returns the application health status.
+     *
+     * @return HTTP 200 with JSON body {@code {"status":"UP"}}
+     */
+    @GetMapping(value = "/health", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<HealthResponse> health() {
+        return ResponseEntity.ok(new HealthResponse("UP"));
     }
 }
