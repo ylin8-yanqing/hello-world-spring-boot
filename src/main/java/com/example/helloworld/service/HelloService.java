@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class HelloService {
 
-    private static final String HELLO_MESSAGE = "Hello World";
+    private static final String HELLO_MESSAGE = "Hello World 1";
 
     /**
      * Returns the Hello World greeting response.
